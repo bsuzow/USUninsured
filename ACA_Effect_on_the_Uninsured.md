@@ -1,5 +1,5 @@
 
-This report conducts an exploratory data analysis on the US Uninsured population.  The 3 data sets (2010, 2013 and 2016) are retrieved from the US Census Bureau (See readme.text for the URLs).
+This report conducts an exploratory data analysis on the US Uninsured population.  The 3 data sets (2010, 2013 and 2016) are retrieved from the US Census Bureau (See [readme.txt](https://github.com/bsuzow/USUninsured/blob/master/readme.txt)) for the URLs).
 
 Since the ACA was signed into law in 2010 by President Obama, its major provisions had taken into effect by 2014. Has the number of the uninsured decreased?  Wikeppedia reports "the uninsured share of population had roughtly halved."  From the 3 annual data sets, we can compare the changes in the uninsured population percentages before and after the ACA. 
 - With the 2010 and 2013 datasets, we calculate the percentage changes between the two years.  This serves as the 'before-the-ACA' data points.
@@ -47,12 +47,24 @@ df_Uninsured.columns = ["2010-13","2013-16","diff","state"]
 # Run t-test.
 #------------------
 
-stats.ttest_rel(diff10_13, diff13_16)
+t=stats.ttest_rel(diff10_13, diff13_16)
 
 t_criticalVal = stats.t.ppf((1-.975),df=100)
 # cdf is the inverse of ppf
 p_val = stats.t.cdf(t_criticalVal,df=100)
 
+print("t-stat: {}, p-value: {}".format(round(t[0],4),t[1]))
+
+```
+
+    t-stat: 15.4215, p-value: 1.2191977729079452e-20
+    
+
+Let's plot the two datasets side-by-side per State.
+Note: No red ("before the ACA") bars are drawn for the MS and NH States. That is not due to missing data points, rather 0% changes from 2010 to 2013. 
+
+
+```python
 #--------------------------------------------
 # Bargraph (side-by-side) to compare the change percentage between before and after the ACA.
 # ref: https://matplotlib.org/gallery/statistics/barchart_demo.html.
@@ -85,5 +97,5 @@ plt.show()
 ```
 
 
-![png](output_1_0.png)
+![png](output_3_0.png)
 
