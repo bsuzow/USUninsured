@@ -66,6 +66,9 @@ df_Uninsured = pd.DataFrame(dict(s1=diff10_13, s2=diff13_16, s3=diff, s4=state_c
 
 df_Uninsured.columns = ["2010-13","2013-16","diff","state"]
 
+with open("USUninsuredACA.csv","w") as csvfile:
+    df_Uninsured.to_csv(csvfile)
+
 #------------------
 # Run t-test.
 #------------------
@@ -82,49 +85,14 @@ p_val = stats.t.cdf(t_criticalVal,df=100)
 
 Uninsured_Scatterplot(df_Uninsured)
 
-"""
-fig = plt.gcf()
-fig.set_size_inches(15,10)
 
-plt.plot(df_Uninsured["state"],df_Uninsured["diff"],'b.')
-
-plt.xticks(df_Uninsured["state"],rotation="90")
-plt.xlabel("State")
-plt.ylabel("Increase in the Uninsured Decrease %")
-plt.title("Difference in the Uninsured (under 65 years) Percentage Change Before and After the ACA by US State" )
-plt.show()
-"""
 #------------------------------------------
 # Bargraph(stacked) to compare the drop between before and after the ACA.
 # Issue: the overlapping area of the bar shows brown.  How to stack without the color change?
 #------------------------------------------
 
 Uninsured_BarStacked(df_Uninsured)
-"""
-fig = plt.gcf()
-fig.set_size_inches(15,10)
 
-index = np.arange(51)
-
-opacity = 0.4
-bar_width = 0.7
-
-plt.bar(df_Uninsured["state"],df_Uninsured["2010-13"],bar_width,
-       alpha=opacity, color='r',
-       label="before the ACA")
-
-plt.bar(df_Uninsured["state"],
-       df_Uninsured["2013-16"],bar_width,
-       alpha=opacity, color='g',
-       label="after the ACA")
-
-
-plt.xlabel("State")
-plt.xticks(df_Uninsured["state"], rotation="90")
-plt.ylabel("Changes in the Uninsured Percent")
-plt.title("Comparison in the Uninsured Percentage Change Before and After the ACA by US State" )
-plt.show()
-"""
 #--------------------------------------------
 # Bargraph (side-by-side) to compare the change percentage between before and after the ACA.
 # ref: https://matplotlib.org/gallery/statistics/barchart_demo.html.
@@ -132,29 +100,3 @@ plt.show()
 
 Uninsured_BarSideBySide(df_Uninsured)
 
-"""
-fig,ax = plt.subplots(figsize=(15,10))
-
-index = np.arange(51)
-
-opacity = 0.4
-bar_width = 0.35
-
-ax.bar(index,df_Uninsured["2010-13"],bar_width,
-       alpha=opacity, color='r',
-       label="before the ACA")
-
-ax.bar(index+bar_width,
-       df_Uninsured["2013-16"],bar_width,
-       alpha=opacity, color='g',
-       label="after the ACA")
-
-ax.set_xlabel("State")
-ax.set_xticks(index+bar_width/2)
-ax.set_ylabel("Changes in the Uninsured Percentage")
-ax.set_title("Comparison in the Uninsured (under 65 years) Percentage Change Before and After the ACA by US State" )
-ax.set_xticklabels(state_codes)
-ax.legend()   # to show the bar labels
-fig.tight_layout()  # make subplots fit within the figure
-plt.show()
-"""
