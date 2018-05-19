@@ -1,7 +1,7 @@
 
 This report conducts an exploratory data analysis on the US uninsured population (under 65 years).  The 3 data sets (2010, 2013 and 2016) are retrieved from the US Census Bureau (See [readme.txt](https://github.com/bsuzow/USUninsured/blob/master/readme.txt) for the source URLs).
 
-Since the ACA was signed into law in 2010 by President Obama, its major provisions had taken into effect by 2014. Has the number of the uninsured decreased?  Wikeppedia reports "the uninsured share of population had roughtly halved."  From the 3 annual data sets, we can compare the percentage changes in the uninsured before and after the ACA. 
+Since the ACA was signed into law in 2010 by President Obama, its major provisions had taken into effect by 2014. Has the number of the uninsured decreased?  Wikipedia reports "the uninsured share of population had roughtly halved."  From the 3 annual data sets, we can compare the percentage changes in the uninsured before and after the ACA. 
 - With the 2010 and 2013 datasets, we calculate the percentage changes between the two years.  This serves as the 'before-the-ACA' data points.
 - With the 2013 and 2016 datasets, the 'after-the-ACA' data points get generated.
 
