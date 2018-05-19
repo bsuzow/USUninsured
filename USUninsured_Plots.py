@@ -94,3 +94,6 @@ def Uninsured_BarSideBySide(df):
     ax.legend()   # to show the bar labels
     fig.tight_layout()  # make subplots fit within the figure
     plt.show()
+
+# how to embed Tableau chart in a webpage
+# https://www.datavizforall.org/embed/tableau/
